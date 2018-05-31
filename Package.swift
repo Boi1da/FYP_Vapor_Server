@@ -11,14 +11,17 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/vapor/vapor.git", .upToNextMajor(from: "2.1.0")),
         .package(url: "https://github.com/vapor/fluent-provider.git", .upToNextMajor(from: "1.2.0")),
+        .package(url: "https://github.com/vapor-community/postgresql-provider.git", .upToNextMajor(from: "2.1.0")),
+        .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "4.0.0")),
+        .package(url: "https://github.com/weichsel/ZIPFoundation/", .upToNextMajor(from: "0.9.0"))
     ],
     targets: [
         .target(
             name: "App",
-            dependencies: ["Vapor", "FluentProvider"],
+            dependencies: ["Vapor", "FluentProvider", "PostgreSQLProvider", "Alamofire"],
             exclude: ["Config", "Public", "Resources"]
         ),
-        .target(name: "Run", dependencies: ["App"]),
+        .target(name: "Run", dependencies: ["App", "Alamofire", "ZIPFoundation"]),
         .testTarget(name: "AppTests", dependencies: ["App", "Testing"])
     ]
 )

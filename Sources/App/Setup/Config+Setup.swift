@@ -1,4 +1,5 @@
 import FluentProvider
+import PostgreSQLProvider
 
 extension Config {
     public func setup() throws {
@@ -8,11 +9,17 @@ extension Config {
 
         try setupProviders()
         try setupPreparations()
+        try addPreparations()
     }
     
     /// Configure providers
     private func setupProviders() throws {
         try addProvider(FluentProvider.Provider.self)
+        try addProvider(PostgreSQLProvider.Provider.self)
+    }
+    
+    private func addPreparations() {
+        preparations.append(FileContent.self)
     }
     
     /// Add all models that should have their

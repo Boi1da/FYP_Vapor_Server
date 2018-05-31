@@ -2,6 +2,7 @@ import Vapor
 import FluentProvider
 import HTTP
 
+
 final class Post: Model {
     let storage = Storage()
     
