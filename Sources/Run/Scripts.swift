@@ -16,6 +16,7 @@ class Scripts {
     var outputPipe : Pipe!
     var duplicatedLinesCount : Int!
     var complexityLinesCount : Int!
+    var launchPath = "/Users/Armani/pokemon/RunPMD.command"
     
     //Duplication!
     func startTask(pmdFilePath : String,minTokens : String, projectPath : String, language : String, fileFormat : String, ruleSetPath : String ){
@@ -38,7 +39,7 @@ class Scripts {
         let taskQueue = DispatchQueue.global(qos: DispatchQoS.QoSClass.background)
         taskQueue.async {
             self.buildTask = Process()
-            self.buildTask.launchPath = "/Users/Armani/pokemon/RunPMD.command"
+            self.buildTask.launchPath = self.launchPath
         
             self.buildTask.arguments = arguments
             self.buildTask.terminationHandler = {
@@ -57,8 +58,7 @@ class Scripts {
             
             
             self.resultsString = output
-            
-            //Check to see if the sentence contains a number!
+    
             print(self.resultsString)
             
             self.buildTask.waitUntilExit()
