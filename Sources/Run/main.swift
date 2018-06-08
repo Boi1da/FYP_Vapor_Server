@@ -44,7 +44,7 @@ drop.post("repositoryFiles") { request in
         guard result.status == .found else { break }
         url = result.headers["Location"]!
     }
-    downloadManager.downloadZipFile(fileName: repoName, sourceURL: url)
+    downloadManager.downloadZipFile(fileName: "\(repoName).zip", sourceURL: url)
 
 
     /*5)Run the script (CPD)
